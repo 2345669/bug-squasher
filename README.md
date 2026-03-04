@@ -1,73 +1,50 @@
-# React + TypeScript + Vite
+# Bug Squasher
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React coding challenge disguised as an arcade game. Bugs are crawling across your codebase — click them before they escape!
 
-Currently, two official plugins are available:
+The game _works_, but it's full of... well, bugs. Your mission is to dig into the code, find the broken pieces, and fix them one by one.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## The Challenge
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Open `src/App.tsx` — each task is marked with a `🔧` comment in the relevant file.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Task 1 — Fix the score (Easy)
+
+**File:** `src/hooks/use-squash.ts`
+
+You're clicking bugs, splats are flying, but the score stays at zero. Something is missing in the click handler. Find it and fix it.
+
+### Task 2 — Clean up escaped bugs (Medium)
+
+**File:** `src/hooks/use-game-loop.ts`
+
+Bugs that crawl off-screen are never removed. They pile up invisibly, and lives never go down. Implement the cleanup logic using `src/utils/is-bug-off-screen.ts` to filter out escaped bugs and decrement lives.
+
+### Task 3 — Game over screen (Medium)
+
+**Files:** `src/components/game-over.tsx` + `src/App.tsx`
+
+The game has no end. When lives hit zero... nothing happens. Build the `GameOver` component (show the final score, the best score, and a "Play Again" button) and wire it into `App.tsx`.
+
+### Task 4 — Dynamic difficulty (Medium)
+
+**File:** `src/hooks/use-game-loop.ts`
+
+The spawn rate never changes. Whether your score is 0 or 50, bugs trickle in at the same pace. Make the game ramp up — faster spawns, faster bugs, or both — as the player's score climbs.
+
+### Task 5 — Tailwind CSS migration (Bonus)
+
+All styles are currently inline. Set up [Tailwind CSS](https://tailwindcss.com/docs/installation/using-vite) and replace them with utility classes.
+
+## Tech Stack
+
+- React 19
+- TypeScript
+- Vite
