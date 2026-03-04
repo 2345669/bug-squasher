@@ -12,7 +12,7 @@
  *   - highScore: number
  *   - onRestart: () => void
  *
- * Hint: look at StartScreen.tsx for reference on structure and styling.
+ * Hint: look at start-screen.tsx for reference on structure and styling.
  */
 
 export default function GameOver() {
