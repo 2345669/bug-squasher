@@ -33,7 +33,7 @@ export function createBug(): Bug {
     id: crypto.randomUUID(),
     x,
     y,
-    speed: randomBetween(1.5, 3.5),
+    speed: randomBetween(1.5, 3.15),
     direction,
     emoji: BUG_EMOJIS[Math.floor(Math.random() * BUG_EMOJIS.length)],
     size: randomBetween(24, 38),

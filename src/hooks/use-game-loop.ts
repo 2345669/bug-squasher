@@ -1,6 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { SPAWN_INTERVAL_MS, TICK_INTERVAL_MS } from "../constants";
-import { createBug } from "@/utils";
+import { createBug, isBugOffScreen } from "@/utils";
 import type { Bug } from "@/interfaces";
 
 export function useGameLoop() {
@@ -45,7 +45,16 @@ export function useGameLoop() {
         //
         // For each escaped bug, decrement lives by 1 using setLives.
         // Return only the visible bugs from this updater.
-        //
+        
+        const listBugVisible: Bug[] = [];
+
+        listBugVisible.forEach(bebitte => {
+          if (!isBugOffScreen(bebitte)) {
+            listBugVisible.push(bebitte);
+          } else {
+            setLives(prev => prev - 1);
+          }
+        });
         // Example approach:
         //   const visible = updated.filter(b => !isBugOffScreen(b));
         //   const escaped = updated.filter(b => isBugOffScreen(b));

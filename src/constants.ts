@@ -20,5 +20,5 @@ export const CODE_SNIPPETS = [
 ];
 
 export const INITIAL_LIVES = 5;
-export const SPAWN_INTERVAL_MS = 1800;
+export const SPAWN_INTERVAL_MS = 800;
 export const TICK_INTERVAL_MS = 50;

@@ -20,7 +20,7 @@ export function useSquash() {
     }, SPLAT_DURATION_MS);
 
     // 🔧 TASK 1: The score should increase by 1 here.
-    // Something is missing... What should we call?
+    setScore((prev) => prev + 1);
   }, []);
 
   const reset = useCallback(() => {
